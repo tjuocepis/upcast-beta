@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "969986504031",
+    "firebase_url": "https://upcast-beta.firebaseio.com",
+    "project_id": "upcast-beta",
+    "storage_bucket": "upcast-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969986504031:android:a6c4bf409692d6e6",
+        "android_client_info": {
+          "package_name": "com.example.titusjuocepis.upcastbeta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969986504031-67uchs08nabrjrvlk4br0apknukantcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8q81aLofxkBL9nynPsC6sb9aZQz3AUGc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

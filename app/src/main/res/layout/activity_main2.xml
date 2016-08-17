@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.titusjuocepis.upcastbeta.v2.Main2Activity"
+    android:background="@color/colorSecondary">
+
+    <include
+        android:id="@+id/actionbar_main"
+        layout="@layout/actionbar_main">
+    </include>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actionbar_main">
+
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_camera_512"/>
+
+    <ImageButton
+        android:id="@+id/button_settings"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_above="@+id/button_discover"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/ic_settings_128"/>
+
+    <ImageButton
+        android:id="@+id/button_discover"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/ic_earth_512"/>
+
+    <ImageButton
+        android:id="@+id/button_profile"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_toRightOf="@+id/button_discover"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/ic_profile"/>
+
+</RelativeLayout>
