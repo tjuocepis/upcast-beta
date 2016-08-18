@@ -205,13 +205,13 @@ public class MainActivity extends AppCompatActivity implements ChannelListFragme
 
                 case 0:
                     currentTab = 0;
-                    return DiscoverFragment.newInstance(1);
+                    return DiscoverFragment.getInstance();
                 case 1:
                     currentTab = 1;
                     return TestFragment.newInstance();
                 case 2:
                     currentTab = 2;
-                    return ProfileFragment.newInstance(UserManager.userEmail());
+                    return ProfileFragment.getInstance(UserManager.userEmail());
 
             }
             return null;

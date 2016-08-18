@@ -39,7 +39,7 @@ import java.util.List;
  * Activities that contain this fragment must implement the
  * {@link ProfileFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link ProfileFragment#getInstance} factory method to
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment implements CreateChannelDialogFragment.CreateChannelDialogListener {
@@ -66,6 +66,9 @@ public class ProfileFragment extends Fragment implements CreateChannelDialogFrag
         // Required empty public constructor
     }
 
+    private static ProfileFragment mInstance = new ProfileFragment();
+    private static boolean ARGS_SET = false;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -73,15 +76,16 @@ public class ProfileFragment extends Fragment implements CreateChannelDialogFrag
      * @param username Profile username.
      * @return A new instance of fragment ProfileFragment.
      */
-    public static ProfileFragment newInstance(String username) {
+    public static ProfileFragment getInstance(String username) {
 
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
+        if (!ARGS_SET) {
+            Bundle args = new Bundle();
+            args.putString(ARG_USERNAME, username);
+            mInstance.setArguments(args);
+            ARGS_SET = true;
+        }
 
-        args.putString(ARG_USERNAME, username);
-        fragment.setArguments(args);
-
-        return fragment;
+        return mInstance;
     }
 
     @Override
@@ -106,7 +110,6 @@ public class ProfileFragment extends Fragment implements CreateChannelDialogFrag
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(), "RESUMING PROFILE", Toast.LENGTH_SHORT).show();
     }
 
     @Override

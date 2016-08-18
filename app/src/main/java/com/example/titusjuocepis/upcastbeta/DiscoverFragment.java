@@ -38,11 +38,12 @@ public class DiscoverFragment extends Fragment {
 
     private final String FIREBASE_URL = "https://upcast-beta.firebaseio.com";
 
-    public static DiscoverFragment newInstance(int pageNo) {
-        DiscoverFragment fragment = new DiscoverFragment();
+    private static DiscoverFragment mInstance = new DiscoverFragment();
 
-        return fragment;
+    public static DiscoverFragment getInstance() {
+        return mInstance;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

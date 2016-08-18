@@ -14,26 +14,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@drawable/bottom_border"
             android:id="@+id/header_layout">
 
             <ImageView
                 android:id="@+id/profile_pic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/ic_user_512"/>
 
             <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
                 android:text="username123"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#fff"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -41,24 +40,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="2"
             android:layout_below="@+id/header_layout"
+            android:paddingTop="8dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:id="@+id/buttons_layout">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="Owned"
-                android:textSize="26sp"
+                android:textSize="18sp"
+                android:textColor="#fff"
                 android:id="@+id/owned_button"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="Joined"
-                android:textSize="26sp"
+                android:textSize="18sp"
+                android:textColor="#fff"
                 android:id="@+id/joined_button"/>
 
         </LinearLayout>
@@ -80,7 +86,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_plus_black_512"
-            android:id="@+id/fab_create_channel"/>
+            android:id="@+id/fab_create_channel"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 

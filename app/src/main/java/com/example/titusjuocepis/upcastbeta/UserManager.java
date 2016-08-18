@@ -12,6 +12,7 @@ import com.firebase.client.ValueEventListener;
  * Created by titusjuocepis on 6/4/16.
  */
 public class UserManager {
+
     private static UserManager ourInstance = new UserManager();
 
     public static UserManager getInstance() {
@@ -84,9 +85,8 @@ public class UserManager {
                 String[] tokens = user.getEmail().split("\\@");
                 usersRef.push();
                 usersRef.child(tokens[0]).setValue(user);
+                Log.d("[FIREBASE] : ", "User finished adding to Firebase!");
             }
-
-            Log.d("[FIREBASE] : ", "User finished adding to Firebase!");
         }
     }
 }
