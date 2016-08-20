@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.titusjuocepis.upcastbeta.BaseChannel;
@@ -25,7 +29,7 @@ import com.firebase.client.Firebase;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class Main2Activity extends AppCompatActivity implements ChannelListFragment.OnListFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener {
+public class Main2Activity extends AppCompatActivity implements ChannelListFragment.OnListFragmentInteractionListener, Profile2Fragment.OnFragmentInteractionListener {
 
     private ImageButton mButtonDiscover, mButtonProfile, mButtonSearch;
 
@@ -87,7 +91,7 @@ public class Main2Activity extends AppCompatActivity implements ChannelListFragm
         mButtonProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProfileFragment profileFragment = ProfileFragment.getInstance(UserManager.userEmail());
+                Profile2Fragment profileFragment = Profile2Fragment.getInstance(UserManager.userEmail());
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout_main, profileFragment);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -95,6 +99,29 @@ public class Main2Activity extends AppCompatActivity implements ChannelListFragm
                 transaction.commit();
             }
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        TextView tv = (TextView) v.findViewById(R.id.channel_thumbnail_title);
+        String title = tv.getText().toString();
+
+        menu.setHeaderTitle(title);
+        menu.add(Menu.NONE, 1, Menu.NONE, "Delete Channel");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case 1:
+                Toast.makeText(Main2Activity.this, "Deleting!", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override
@@ -108,7 +135,13 @@ public class Main2Activity extends AppCompatActivity implements ChannelListFragm
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-        Toast.makeText(Main2Activity.this, "Poop!", Toast.LENGTH_SHORT).show();
+    public void onChannelClick(String title) {
+        Toast.makeText(Main2Activity.this, title, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onChannelLongClick(String title, View view) {
+        registerForContextMenu(view);
+        openContextMenu(view);
     }
 }

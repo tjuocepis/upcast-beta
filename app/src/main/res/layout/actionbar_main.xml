@@ -41,7 +41,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="12dp"/>
 
             <ImageButton
                 android:id="@+id/actionbar_search"
@@ -52,7 +52,16 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="12dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#000"
+                android:visibility="gone">
+
+            </View>
 
         </RelativeLayout>
 
