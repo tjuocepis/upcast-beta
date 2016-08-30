@@ -32,9 +32,13 @@ public class ChannelThumbnailAdapter extends RecyclerView.Adapter<ChannelThumbna
         mListener = listener;
     }
 
+    public void updateList(ArrayList<BaseChannel> list) {
+        chanList = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gridview_item_channel, parent, false);
         return new ViewHolder(view);
     }

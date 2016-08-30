@@ -31,6 +31,7 @@ public class ChannelManager {
 
     private LoadChannelsFromFirebase loadChannelsTask;
     private AddChannelToFirebase addChannelTask;
+    private DeleteChannelFromFirebase deleteChannelTask;
 
     private final String FIREBASE_URL = "https://upcast-beta.firebaseio.com";
 
@@ -80,7 +81,48 @@ public class ChannelManager {
     public void addChannel(BaseChannel channel) {
         addChannelTask = new AddChannelToFirebase();
         addChannelTask.execute(channel);
+        ownedChannels.add(channel);
     }
+
+    public void deleteChannel(BaseChannel channel) {
+        deleteChannelTask = new DeleteChannelFromFirebase();
+        deleteChannelTask.execute(channel);
+        ownedChannels.remove(channel);
+    }
+
+    private ChildEventListener childEventListener = new ChildEventListener() {
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            if (dataSnapshot.child("host").child(UserManager.key()).exists()) {
+
+                BaseChannel channel = dataSnapshot.getValue(BaseChannel.class);
+                ownedChannels.add(channel);
+                Log.d("[FIREBASE] : ", "Channel Title - " + channel.getTitle());
+                Log.d("[FIREBASE] : ", "Current User - " + UserManager.userEmail());
+            }
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onCancelled(FirebaseError firebaseError) {
+
+        }
+    };
 
     private class LoadChannelsFromFirebase extends AsyncTask<Void,Void,ArrayList<BaseChannel>> {
 
@@ -98,9 +140,8 @@ public class ChannelManager {
             final ArrayList<BaseChannel> result = new ArrayList<>();
 
             Firebase ref = new Firebase(FIREBASE_URL+"/channels");
-            Query query = ref;
 
-            query.addChildEventListener(new ChildEventListener() {
+            ref.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -170,6 +211,32 @@ public class ChannelManager {
         protected void onPostExecute(BaseChannel channel) {
             super.onPostExecute(channel);
             Log.d("[FIREBASE] : ", "Finished adding channel!");
+        }
+    }
+
+    private class DeleteChannelFromFirebase extends AsyncTask<BaseChannel, Void, String> {
+
+        @Override
+        protected String doInBackground(BaseChannel... params) {
+
+            BaseChannel channel = params[0];
+            String channelTitle = channel.getTitle();
+
+            Firebase castsRef = new Firebase(FIREBASE_URL+"/channel_casts");
+            castsRef.child(channelTitle).removeValue();
+
+            Firebase membersRef = new Firebase(FIREBASE_URL+"/channel_members");
+            membersRef.child(channelTitle).removeValue();
+
+            Firebase tagsRef = new Firebase(FIREBASE_URL+"/channel_tags");
+            for (String tag : channel.getTags()) {
+                tagsRef.child(tag).child(channelTitle).removeValue();
+            }
+
+            Firebase channelsRef = new Firebase(FIREBASE_URL+"/channels");
+            channelsRef.child(channelTitle).removeValue();
+
+            return channelTitle;
         }
     }
 }

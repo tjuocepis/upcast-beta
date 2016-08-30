@@ -133,7 +133,7 @@ public class CreateChannelDialogFragment extends DialogFragment {
         super.onAttach(activity);
 
         try {
-            listener = (CreateChannelDialogListener) getTargetFragment();
+            listener = (CreateChannelDialogListener) activity;
         } catch(ClassCastException e) {
             e.printStackTrace();
         }

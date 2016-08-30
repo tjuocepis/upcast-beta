@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.titusjuocepis.upcastbeta.BaseChannel;
 import com.example.titusjuocepis.upcastbeta.ChannelManager;
+import com.example.titusjuocepis.upcastbeta.CreateChannelDialogFragment;
 import com.example.titusjuocepis.upcastbeta.R;
 
 import java.util.ArrayList;
@@ -66,6 +67,11 @@ public class Profile2Fragment extends Fragment {
         }
 
         return mInstance;
+    }
+
+    public void updateChannels() {
+        ChannelManager cm = ChannelManager.getInstance();
+        mChannelAdapter.updateList(cm.getOwnedChannels());
     }
 
     @Override

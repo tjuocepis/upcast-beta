@@ -23,6 +23,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="4dp"
         android:text="Kitty Heaven"
+        android:textSize="11dp"
         android:textColor="#fff"
         android:textAlignment="center"
         android:singleLine="false"
